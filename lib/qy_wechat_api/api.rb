@@ -1,0 +1,6 @@
+require "qy_wechat_api/api/base"
+require "qy_wechat_api/api/department"
+require "qy_wechat_api/api/media"
+require "qy_wechat_api/api/message"
+require "qy_wechat_api/api/tag"
+require "qy_wechat_api/api/user"

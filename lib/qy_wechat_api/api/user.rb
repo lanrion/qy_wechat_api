@@ -13,11 +13,34 @@ module QyWechatApi
       # weixinid  否 微信号。企业内必须唯一
       # extattr 否 扩展属性。扩展属性需要在WEB管理端创建后才生效，否则忽略未知属性的赋值
       def create(user_id, name, options={})
+        user = {userid: user_id}
+        user[:name] = name
+        user.merge(options)
+        http_post("create", user)
+      end
 
+      def update(user_id, options={})
+        user = {userid: user_id}
+        user.merge(options)
+        http_post("update", user)
       end
 
       def delete(id)
+        http_get("get", {userid: id})
+      end
 
+      def get(id)
+        http_get("get", {userid: id})
+      end
+
+      # department_id 是 获取的部门id
+      # fetch_child 否 1/0：是否递归获取子部门下面的成员
+      # status  否 0获取全部员工，1获取已关注成员列表，2获取禁用成员列表，4获取未关注成员列表。status可叠加
+      def simple_list(department_id, fetch_child=nil, status=nil)
+        params = {department_id: department_id}
+        params[:fetch_child] = fetch_child if not fetch_child.nil?
+        params[:status] = status if not status.nil?
+        http_get("simplelist", params)
       end
 
       private
