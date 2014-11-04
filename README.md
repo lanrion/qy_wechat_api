@@ -1,29 +1,7 @@
-# QyWechatApi
+开发中...
 
-TODO: Write a gem description
+部门、成员、标签均可以在开发环境调试
 
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'qy_wechat_api'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install qy_wechat_api
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it ( https://github.com/[my-github-username]/qy_wechat_api/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+```
+gem "qy_wechat_api", git: "https://github.com/lanrion/qy_wechat_api.git"
+```

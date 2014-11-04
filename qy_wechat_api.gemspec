@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.version       = QyWechatApi::VERSION
   spec.authors       = ["lanrion"]
   spec.email         = ["huaitao-deng@foxmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{企业微信高级API Ruby版本}
+  spec.description   = %q{企业微信高级API Ruby版本}
+  spec.homepage      = "https://github.com/lanrion/qy_wechat_api"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
