@@ -34,6 +34,10 @@ module QyWechatApi
       Api::Message.new(get_access_token)
     end
 
+    def menu
+      Api::Menu.new(get_access_token)
+    end
+
     private
       def get_access_token
         self.access_token ||= get_token.result[:access_token]
