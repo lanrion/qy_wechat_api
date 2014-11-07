@@ -1,3 +1,4 @@
+# encoding: utf-8
 module QyWechatApi
   GLOBAL_CODES = {
     -1    => "系统繁忙",

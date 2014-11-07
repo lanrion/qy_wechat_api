@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module QyWechatApi
   class Client
     attr_accessor :corp_id, :corp_secret, :expired_at # Time.now + expires_in
