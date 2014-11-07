@@ -57,8 +57,8 @@ menu_json的生成方法请参考:
 https://github.com/lanrion/weixin_rails_middleware/wiki/DIY-menu
 
 ```ruby
-app_client.menu.delete(menu_json, app_id)
-app_client.menu.create(app_id)
+app_client.menu.create(menu_json, app_id)
+app_client.menu.delete(app_id)
 app_client.menu.get(app_id)
 ```
 
