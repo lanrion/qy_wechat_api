@@ -13,10 +13,12 @@ module QyWechatApi
   OK_CODE    = 0.freeze
 
   class << self
+    # for test
     def corpid
       "wxb9ce1d023fe6eb69"
     end
 
+    # for test
     def corpsecret
       "UOofFIah4PVLmkG8xMH3lpDxj6NTnQSKMrFt-HubiPB4kjB09EmTVcUjgNeermps"
     end
@@ -44,5 +46,10 @@ module QyWechatApi
       en_msg = result_hash.delete("errmsg")
       ResultHandler.new(code, en_msg, result_hash)
     end
+
+    def open_endpoint(url)
+      "https://open.weixin.qq.com#{url}"
+    end
+
   end
 end

@@ -3,10 +3,11 @@
 module QyWechatApi
   module Api
     class Base
-      attr_accessor :access_token
+      attr_accessor :access_token, :corp_id
 
-      def initialize(access_token)
+      def initialize(access_token, corp_id=nil)
         @access_token = access_token
+        @corp_id = corp_id
       end
 
       private
@@ -20,6 +21,10 @@ module QyWechatApi
           request_url = "#{base_url}/#{url}"
           params = params.merge({access_token: access_token})
           QyWechatApi.http_post_without_token(request_url, payload, params)
+        end
+
+        def base_url
+          ""
         end
 
     end
