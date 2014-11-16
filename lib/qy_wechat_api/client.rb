@@ -2,12 +2,12 @@
 
 module QyWechatApi
   class Client
-    attr_accessor :corp_id, :corp_secret, :expired_at # Time.now + expires_in
+    attr_accessor :corp_id, :group_secret, :expired_at # Time.now + expires_in
     attr_accessor :access_token
 
-    def initialize(corp_id, corp_secret, redis_key=nil)
+    def initialize(corp_id, group_secret, redis_key=nil)
       @corp_id     = corp_id
-      @corp_secret = corp_secret
+      @group_secret = group_secret
     end
 
     # 管理部门API
@@ -49,7 +49,7 @@ module QyWechatApi
 
       # 获取token
       def get_token
-        params = {corpid: corp_id, corpsecret: corp_secret}
+        params = {corpid: corp_id, corpsecret: group_secret}
         QyWechatApi.http_get_without_token("/gettoken", params)
       end
 
