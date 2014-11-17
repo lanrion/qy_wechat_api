@@ -12,7 +12,30 @@ gem "qy_wechat_api", git: "https://github.com/lanrion/qy_wechat_api.git"
 
 **暂未对access_token做缓存处理，为了确保在开发过程不会出现token过期问题，请不要使用全局变量存储group_client。**
 
-# 基本用法
+# 配置
+此项配置，仅用于你使用redis存储token，否则不需要!
+
+在：your_project_name/config/initializers/qy_wechat_api.rb 添加：
+
+```ruby
+# don't forget change namespace
+namespace = "your_project_name:qy_wechat_api"
+redis = Redis.new(:host => "127.0.0.1", :port => "6379", :db => 15)
+
+# cleanup keys in the current namespace when restart server everytime.
+exist_keys = redis.keys("#{namespace}:*")
+exist_keys.each{|key|redis.del(key)}
+
+# Give a special namespace as prefix for Redis key, when your have more than one project used qy_wechat_api, this config will make them work fine.
+redis = Redis::Namespace.new("#{namespace}", :redis => redis)
+
+QyWechatApi.configure do |config|
+  config.redis = redis
+end
+```
+
+
+# API基本用法
 
 请务必结合：http://qydev.weixin.qq.com/wiki/index.php 理解以下API参数使用。
 
