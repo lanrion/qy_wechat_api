@@ -17,13 +17,13 @@ module QyWechatApi
       def create(user_id, name, options={})
         user = {userid: user_id}
         user[:name] = name
-        user.merge(options)
+        user.merge!(options)
         http_post("create", user)
       end
 
       def update(user_id, options={})
         user = {userid: user_id}
-        user.merge(options)
+        user.merge!(options)
         http_post("update", user)
       end
 
