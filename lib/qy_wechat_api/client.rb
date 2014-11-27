@@ -6,9 +6,10 @@ module QyWechatApi
     attr_accessor :access_token, :redis_key, :storage
 
     def initialize(corp_id, group_secret, redis_key=nil)
-      @corp_id     = corp_id
+      @corp_id      = corp_id
       @group_secret = group_secret
-      @redis_key  = security_redis_key((redis_key || "qy_" + group_secret))
+      @redis_key    = security_redis_key((redis_key || "qy_" + group_secret))
+      @storage      = Storage.init_with(self)
     end
 
     # return token
@@ -54,15 +55,6 @@ module QyWechatApi
     end
 
     private
-      def get_access_token
-        self.access_token ||= get_token.result["access_token"]
-      end
-
-      # 获取token
-      def get_token
-        params = {corpid: corp_id, corpsecret: group_secret}
-        QyWechatApi.http_get_without_token("/gettoken", params)
-      end
 
       def security_redis_key(key)
         Digest::MD5.hexdigest(key.to_s).upcase

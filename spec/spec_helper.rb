@@ -14,12 +14,29 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+require "redis-namespace"
+require "redis"
+
 require "qy_wechat_api"
 require "pry-rails"
-
 corpid = "wxb9ce1d023fe6eb69"
 corpsecret = "UOofFIah4PVLmkG8xMH3lpDxj6NTnQSKMrFt-HubiPB4kjB09EmTVcUjgNeermps"
 
+
+# Comment to test for ClientStorage
+redis = Redis.new(:host => "127.0.0.1",:port => "6379")
+
+namespace = "qy_wechat_api:redis_storage"
+
+# cleanup keys in the current namespace when restart server everytime.
+exist_keys = redis.keys("#{namespace}:*")
+exist_keys.each{|key|redis.del(key)}
+
+redis_with_ns = Redis::Namespace.new("#{namespace}", :redis => redis)
+
+QyWechatApi.configure do |config|
+  config.redis = redis_with_ns
+end
 
 $client = QyWechatApi::Client.new(corpid, corpsecret)
 

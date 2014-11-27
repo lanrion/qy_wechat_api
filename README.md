@@ -1,7 +1,3 @@
-开发中...
-
-部门、成员、标签、自定义菜单、Oauth2 接口均可以在开发环境调试
-
 **企业号对应多个管理组，请前往 `设置` => `权限管理` 任意创建一个管理组，在管理组最下角即可获取 CorpID Secret**
 
 **有问题请及时提issue**
@@ -10,30 +6,30 @@
 gem "qy_wechat_api", git: "https://github.com/lanrion/qy_wechat_api.git"
 ```
 
-**暂未对access_token做缓存处理，为了确保在开发过程不会出现token过期问题，请不要使用全局变量存储group_client。**
+# token 存储方案
 
-# 配置
-此项配置，仅用于你使用redis存储token，否则不需要!
+## 对象存储
+如果你是单个企业号，建议使用这个方案，无需任何配置即可使用。
 
-在：your_project_name/config/initializers/qy_wechat_api.rb 添加：
-
+## Redis 存储
 ```ruby
-# don't forget change namespace
-namespace = "your_project_name:qy_wechat_api"
-redis = Redis.new(:host => "127.0.0.1", :port => "6379", :db => 15)
+redis = Redis.new(host: "127.0.0.1", port: "6379")
+
+namespace = "qy_wechat_api:redis_storage"
 
 # cleanup keys in the current namespace when restart server everytime.
 exist_keys = redis.keys("#{namespace}:*")
 exist_keys.each{|key|redis.del(key)}
 
-# Give a special namespace as prefix for Redis key, when your have more than one project used qy_wechat_api, this config will make them work fine.
-redis = Redis::Namespace.new("#{namespace}", :redis => redis)
+redis_with_ns = Redis::Namespace.new("#{namespace}", redis: redis)
 
 QyWechatApi.configure do |config|
-  config.redis = redis
+  config.redis = redis_with_ns
 end
 ```
 
+## 自定义存储方案
+TODO...
 
 # API基本用法
 
@@ -43,6 +39,8 @@ end
 
 ```ruby
 group_client = QyWechatApi::Client.new(corpid, corpsecret)
+# 为了确保用户输入的corpid, corpsecret是准确的，请务必执行：
+group_client.is_valid?
 ```
 
 ## 部门
@@ -119,5 +117,4 @@ group_client.media.upload(image_jpg_file, "image")
 # 返回一个URL，请开发者自行使用此url下载
 group_client.media.get_media_by_id(media_id)
 ```
-
 
