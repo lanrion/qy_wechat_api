@@ -1,6 +1,10 @@
 # encoding: utf-8
 
 require "rest-client"
+
+require "carrierwave"
+require "qy_wechat_api/carrierwave/qy_wechat_api_uploader"
+
 require 'yajl/json_gem'
 
 require "qy_wechat_api/client"
@@ -13,29 +17,15 @@ module QyWechatApi
   OK_CODE    = 0.freeze
 
   class << self
-    # for test
-    def corpid
-      "wxb9ce1d023fe6eb69"
-    end
-
-    # for test
-    def corpsecret
-      "UOofFIah4PVLmkG8xMH3lpDxj6NTnQSKMrFt-HubiPB4kjB09EmTVcUjgNeermps"
-    end
 
     def http_get_without_token(url, params={})
       get_api_url = ENDPOINT_URL + url
-      puts get_api_url
-      puts params
       load_json(RestClient.get(get_api_url, params: params))
     end
 
     def http_post_without_token(url, payload={}, params={})
       post_api_url = ENDPOINT_URL + url
-      puts post_api_url
-      puts payload
-      puts params
-      payload = JSON.dump(payload)
+      payload = JSON.dump(payload) if !payload[:media].is_a?(File)
       load_json(RestClient.post(post_api_url, payload, params: params))
     end
 

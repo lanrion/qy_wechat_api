@@ -78,4 +78,23 @@ group_client.oauth.authorize_url("http://2458023e.ngrok.com", "state")
 group_client.oauth.get_user_info("code", "app_id")
 ```
 
+## 发送消息
+
+```ruby
+  # params: (users, parties, tags, agent_id, content, safe=0)
+  # users, parties, tags 如果是多个用户，传数组，如果是全部，则直接传 "@all"
+  group_client.message.send_text("@all", "@all", "@all", app_id, text_message)
+```
+**其他发送消息方法请查看 api/message.rb**
+
+## 上传多媒体文件
+```ruby
+# params: media, media_type
+group_client.media.upload(image_jpg_file, "image")
+
+# 获取下载链接
+# 返回一个URL，请开发者自行使用此url下载
+group_client.media.get_media_by_id(media_id)
+```
+
 
