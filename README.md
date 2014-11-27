@@ -3,6 +3,7 @@
 This project rocks and uses MIT-LICENSE.
 
 https://rubygems.org/gems/qy_wechat_api
+
 [![Gem Version](https://badge.fury.io/rb/qy_wechat_api.svg)](http://badge.fury.io/rb/qy_wechat_api)
 
 **企业号对应多个管理组，请前往 `设置` => `权限管理` 任意创建一个管理组，在管理组最下角即可获取 CorpID Secret**
@@ -13,7 +14,7 @@ https://rubygems.org/gems/qy_wechat_api
 gem "qy_wechat_api", git: "https://github.com/lanrion/qy_wechat_api.git"
 ```
 
-# token 存储方案
+# Token 存储方案
 
 ## 对象存储
 如果你是单个企业号，建议使用这个方案，无需任何配置即可使用。
