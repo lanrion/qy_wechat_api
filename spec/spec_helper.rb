@@ -14,6 +14,15 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+require "qy_wechat_api"
+require "pry-rails"
+
+corpid = "wxb9ce1d023fe6eb69"
+corpsecret = "UOofFIah4PVLmkG8xMH3lpDxj6NTnQSKMrFt-HubiPB4kjB09EmTVcUjgNeermps"
+
+
+$client = QyWechatApi::Client.new(corpid, corpsecret)
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
