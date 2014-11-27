@@ -1,3 +1,10 @@
+# QyWechatApi
+
+This project rocks and uses MIT-LICENSE.
+
+https://rubygems.org/gems/qy_wechat_api
+[![Gem Version](https://badge.fury.io/rb/qy_wechat_api.svg)](http://badge.fury.io/rb/qy_wechat_api)
+
 **企业号对应多个管理组，请前往 `设置` => `权限管理` 任意创建一个管理组，在管理组最下角即可获取 CorpID Secret**
 
 **有问题请及时提issue**
