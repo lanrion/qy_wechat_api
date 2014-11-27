@@ -1,17 +1,22 @@
 # encoding: utf-8
 
 require "rest-client"
-
 require "carrierwave"
-require "qy_wechat_api/carrierwave/qy_wechat_api_uploader"
-
 require 'yajl/json_gem'
 
+require "qy_wechat_api/carrierwave/qy_wechat_api_uploader"
+require "qy_wechat_api/config"
 require "qy_wechat_api/client"
 require "qy_wechat_api/handler"
 require "qy_wechat_api/api"
 
 module QyWechatApi
+
+  # Storage
+  autoload(:Storage,       "qy_wechat_api/storage/storage")
+  autoload(:ObjectStorage, "qy_wechat_api/storage/object_storage")
+  autoload(:RedisStorage,  "qy_wechat_api/storage/redis_storage")
+
   ENDPOINT_URL = "https://qyapi.weixin.qq.com/cgi-bin"
   OK_MSG     = "ok".freeze
   OK_CODE    = 0.freeze
