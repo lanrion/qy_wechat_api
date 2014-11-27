@@ -24,6 +24,9 @@ Gem::Specification.new do |spec|
   # https://github.com/brianmario/yajl-ruby
   spec.add_dependency "yajl-ruby", "~> 1.2.0"
 
+  spec.add_dependency "carrierwave", "~> 0.10.0"
+  spec.add_dependency 'mini_magick', '~> 3.7.0'
+
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake"
 end

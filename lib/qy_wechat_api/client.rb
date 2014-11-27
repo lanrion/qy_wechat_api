@@ -44,7 +44,7 @@ module QyWechatApi
 
     private
       def get_access_token
-        self.access_token ||= get_token.result[:access_token]
+        self.access_token ||= get_token.result["access_token"]
       end
 
       # 获取token
