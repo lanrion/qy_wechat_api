@@ -63,11 +63,22 @@ group_client.department.list
 ## 成员
 
 ```ruby
+<!-- 创建成员 -->
 group_client.user.create(user_id, name, options={})
+<!-- 更新成员 -->
 group_client.user.update(user_id, options={})
+<!-- 删除成员 -->
 group_client.user.delete(user_id)
+<!-- 批量删除成员 -->
+group_client.user.batch_delete(user_ids)
+<!-- 获取成员 -->
 group_client.user.get(user_id)
+<!-- 获取部门成员 -->
 group_client.user.simple_list(department_id, fetch_child=nil, status=nil)
+<!-- 获取部门成员(详情) -->
+group_client.user.full_list(department_id, fetch_child=nil, status=nil)
+<!-- 邀请成员关注 -->
+group_client.user.send_invitation(user_id, tips=nil)
 ```
 
 ## 标签

@@ -12,19 +12,27 @@ module QyWechatApi
 
       private
         def http_get(url, params={})
-          request_url = "#{base_url}/#{url}"
           params = params.merge({access_token: access_token})
-          QyWechatApi.http_get_without_token(request_url, params )
+          QyWechatApi.http_get_without_token(request_url(url, params), params )
         end
 
         def http_post(url, payload={}, params={})
-          request_url = "#{base_url}/#{url}"
           params = params.merge({access_token: access_token})
-          QyWechatApi.http_post_without_token(request_url, payload, params)
+          QyWechatApi.http_post_without_token(request_url(url, params), payload, params)
         end
 
         def base_url
           ""
+        end
+
+        def request_url(url, params={})
+          use_base_url = params.delete(:use_base_url)
+          if use_base_url
+            # 使用基础 +base_url+进行拼接
+            "#{base_url}/#{url}"
+          else
+            url
+          end
         end
 
     end
