@@ -126,3 +126,8 @@ group_client.media.upload(image_jpg_file, "image")
 group_client.media.get_media_by_id(media_id)
 ```
 
+## 捐赠支持
+
+  如果你觉得我的gem对你有帮助，欢迎打赏支持，:smile:
+
+  ![](https://raw.githubusercontent.com/lanrion/my_config/master/imagex/donation_me.png)
