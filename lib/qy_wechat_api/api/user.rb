@@ -66,7 +66,7 @@ module QyWechatApi
       # 邀请成员关注
       def send_invitation(user_id, tips="")
         payload = {userid: user_id, invite_tips: tips}
-        http_post("/invite/send", payload, {use_base_url: false})
+        http_post("/invite/send", payload, {waive_base_url: true})
       end
 
       private

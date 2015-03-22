@@ -54,6 +54,10 @@ module QyWechatApi
       Api::Oauth.new(get_access_token, corp_id)
     end
 
+    def js
+      Api::Js.new(get_access_token, corp_id)
+    end
+
     private
 
       def security_redis_key(key)

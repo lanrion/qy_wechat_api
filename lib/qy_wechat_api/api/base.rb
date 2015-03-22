@@ -26,12 +26,12 @@ module QyWechatApi
         end
 
         def request_url(url, params={})
-          use_base_url = params.delete(:use_base_url)
-          if !use_base_url
+          waive_base_url = params.delete(:waive_base_url)
+          if waive_base_url
+            url
+          else
             # 使用基础 +base_url+进行拼接
             "#{base_url}/#{url}"
-          else
-            url
           end
         end
 
