@@ -1,8 +1,4 @@
-require "qy_wechat_api/api/base"
-require "qy_wechat_api/api/department"
-require "qy_wechat_api/api/media"
-require "qy_wechat_api/api/message"
-require "qy_wechat_api/api/tag"
-require "qy_wechat_api/api/user"
-require "qy_wechat_api/api/menu"
-require "qy_wechat_api/api/oauth"
+Dir["#{File.dirname(__FILE__)}/api/**/*.rb"].each do |path|
+  require path
+end
+

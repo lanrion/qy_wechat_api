@@ -9,6 +9,7 @@ require "qy_wechat_api/config"
 require "qy_wechat_api/client"
 require "qy_wechat_api/handler"
 require "qy_wechat_api/api"
+require "qy_wechat_api/suite"
 
 module QyWechatApi
 
@@ -17,7 +18,7 @@ module QyWechatApi
   autoload(:ObjectStorage, "qy_wechat_api/storage/object_storage")
   autoload(:RedisStorage,  "qy_wechat_api/storage/redis_storage")
 
-  ENDPOINT_URL = "https://qyapi.weixin.qq.com/cgi-bin"
+  ENDPOINT_URL = "https://qyapi.weixin.qq.com/cgi-bin".freeze
   OK_MSG     = "ok".freeze
   OK_CODE    = 0.freeze
 
