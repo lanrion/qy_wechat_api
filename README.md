@@ -137,3 +137,59 @@ group_client.media.upload(image_jpg_file, "image")
 group_client.media.get_media_by_id(media_id)
 ```
 
+## 第三方应用
+
+这里特别注意：保留 suite_access_token的cache是直接利用了 Rails.cache，请务必在Rails框架下使用此gem。
+
+### api 使用介绍
+
+```ruby
+suite_api = QyWechatApi::Suite.service(suite_id, suite_secret, suite_ticket)
+
+# 获取预授权码
+suite_api.get_pre_auth_code(appid=[])
+
+# 获取企业号的永久授权码
+suite_api.get_permanent_code(auth_code)
+
+# 获取企业号的授权信息
+suite_api.get_auth_info(auth_corpid, code)
+
+# 获取企业号应用
+suite_api.get_agent(auth_corpid, code, agent_id)
+
+# 设置授权方的企业应用的选项设置信息
+suite_api.set_agent(auth_corpid, permanent_code, agent_info)
+
+# 调用企业接口所需的access_token
+suite_api.get_crop_token(auth_corpid, permanent_code)
+```
+
+### 应用套件的回调通知处理
+
+Wiki: http://qydev.weixin.qq.com/wiki/index.php?title=%E7%AC%AC%E4%B8%89%E6%96%B9%E5%9B%9E%E8%B0%83%E5%8D%8F%E8%AE%AE
+
+```ruby
+class QyServicesController < ApplicationController
+  skip_before_filter :verify_authenticity_token, only: :receive_ticket
+
+  # TODO: 需要创建表: suites
+  def receive_ticket
+    param_xml = request.body.read
+    aes_key   = "NJgquXf6vnYlGpD5APBqlndAq7Nx8fToiEz5Wbaka47"
+    aes_key   = Base64.decode64("#{aes_key}=")
+    hash      = MultiXml.parse(param_xml)['xml']
+    @body_xml = OpenStruct.new(hash)
+    suite_id  = "tj86cd0f5b8f7ce20d"
+    content   = QyWechat::Prpcrypt.decrypt(aes_key, @body_xml.Encrypt, suite_id)[0]
+    hash      = MultiXml.parse(content)["xml"]
+    Rails.logger.info hash
+    render text: "success"
+    # {"SuiteId"=>"tj86cd0f5b8f7ce20d",
+    #  "SuiteTicket"=>"Pb5M0PEQFZSNondlK1K_atu2EoobY9piMcQCdE3URiCG3aTwX5WBTQaSsqCzaD-0",
+    #  "InfoType"=>"suite_ticket",
+    #  "TimeStamp"=>"1426988061"}
+  end
+end
+```
+
