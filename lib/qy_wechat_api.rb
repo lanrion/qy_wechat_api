@@ -1,5 +1,6 @@
 # encoding: utf-8
 
+require 'active_support/all'
 require "rest-client"
 require "carrierwave"
 require 'yajl/json_gem'
