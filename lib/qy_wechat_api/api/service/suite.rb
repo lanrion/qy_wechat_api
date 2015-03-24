@@ -55,6 +55,17 @@ module QyWechatApi
           http_post("get_crop_token", params)
         end
 
+        # https://qy.weixin.qq.com/cgi-bin/loginpage?suite_id=$suite_id$&pre_auth_code=$pre_auth_code$&redirect_uri=$redirect_uri$&state=$state$
+        def auth_url(code, uri, state="suite")
+          params = {
+            suite_id: suite_id,
+            pre_auth_code: code,
+            redirect_uri: uri,
+            state: state
+          }.to_query
+          "#{QyWechatApi::ENDPOINT_URL}/loginpage?#{params}"
+        end
+
         private
 
           def base_url

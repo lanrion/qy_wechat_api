@@ -163,6 +163,9 @@ suite_api.set_agent(auth_corpid, permanent_code, agent_info)
 
 # 调用企业接口所需的access_token
 suite_api.get_crop_token(auth_corpid, permanent_code)
+
+# 生成授权URL
+suite_api.auth_url(code, uri, state="suite")
 ```
 
 ### 应用套件的回调通知处理

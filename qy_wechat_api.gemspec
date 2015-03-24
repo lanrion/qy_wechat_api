@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
     # A streaming JSON parsing and encoding library for Ruby (C bindings to yajl)
   # https://github.com/brianmario/yajl-ruby
   spec.add_dependency "yajl-ruby", "~> 1.2.0"
+  spec.add_dependency "activesupport"
 
   spec.add_dependency "carrierwave", "~> 0.10.0"
   spec.add_dependency 'mini_magick', '~> 3.7.0'
