@@ -2,7 +2,7 @@
 module QyWechatApi
   module Api
     module Service
-      class Base < Api::Base
+      class ServiceBase < Api::Base
 
         attr_accessor :suite_id, :suite_secret, :suite_ticket
 
