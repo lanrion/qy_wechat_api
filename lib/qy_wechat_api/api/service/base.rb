@@ -28,7 +28,14 @@ module QyWechatApi
                 request_url("get_suite_token", params),
                 params
               )
-              res.result["suite_access_token"]
+              Rails.logger.info(res)
+              token = res.result["suite_access_token"]
+              if token.blank?
+                Rails.cache.delete(suite_id)
+                raise res.errors
+              else
+                token
+              end
             end
           end
 

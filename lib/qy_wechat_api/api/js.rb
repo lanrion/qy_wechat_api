@@ -18,7 +18,13 @@ module QyWechatApi
         cache_key = "jsticket-#{client.redis_key}"
         Rails.cache.fetch(cache_key, expires_in: 7100.seconds) do
           res = http_get(get_jsapi_ticket, {waive_base_url: true})
-          res.result["ticket"]
+          ticket = res.result["ticket"]
+          if ticket.blank?
+            Rails.cache.delete(cache_key)
+            raise res.errors
+          else
+            ticket
+          end
         end
       end
 
