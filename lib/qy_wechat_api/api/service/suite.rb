@@ -2,7 +2,7 @@
 module QyWechatApi
   module Api
     module Service
-      class Suite < Base
+      class Suite < ServiceBase
 
         # 获取预授权码
         # 该API用于获取预授权码。预授权码用于企业号授权时的应用提供商安全验证。
