@@ -63,7 +63,7 @@ module QyWechatApi
             redirect_uri: uri,
             state: state
           }.to_query
-          "#{QyWechatApi::ENDPOINT_URL}/loginpage?#{params}"
+          "#{QyWechatApi::SUITE_ENDPOINT}/loginpage?#{params}"
         end
 
         private
