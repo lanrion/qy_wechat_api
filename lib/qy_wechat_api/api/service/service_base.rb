@@ -40,13 +40,13 @@ module QyWechatApi
           end
 
           def http_get(url, params={})
-            params.merge!({suite_id: suite_id})
+            payload.merge!({suite_id: suite_id})
             params.merge!({suite_access_token: get_suite_token})
             QyWechatApi.http_get_without_token(request_url(url, params), params)
           end
 
           def http_post(url, payload={}, params={})
-            params.merge!({suite_id: suite_id})
+            payload.merge!({suite_id: suite_id})
             # 获取suite_token时不需要
             if !params.keys.include?(:suite_ticket)
               params.merge!({suite_access_token: get_suite_token})
