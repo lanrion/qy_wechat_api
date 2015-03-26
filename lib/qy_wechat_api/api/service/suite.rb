@@ -47,12 +47,12 @@ module QyWechatApi
         end
 
         # 应用提供商在取得企业号的永久授权码并完成对企业号应用的设置之后，便可以开始通过调用企业接口（详见企业接口文档）来运营这些应用。其中，调用企业接口所需的access_token获取方法如下。
-        def get_crop_token(auth_corpid, permanent_code)
+        def get_corp_token(auth_corpid, permanent_code)
           params = {
             auth_corpid: auth_corpid,
             permanent_code: permanent_code,
           }
-          http_post("get_crop_token", params)
+          http_post("get_corp_token", params)
         end
 
         # https://qy.weixin.qq.com/cgi-bin/loginpage?suite_id=$suite_id$&pre_auth_code=$pre_auth_code$&redirect_uri=$redirect_uri$&state=$state$
