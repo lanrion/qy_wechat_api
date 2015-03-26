@@ -31,6 +31,7 @@ module QyWechatApi
     end
 
     def http_post_without_token(url, payload={}, params={})
+      Rails.logger.info("url: #{url}-- payload: #{payload}-- params: #{params}")
       post_api_url = ENDPOINT_URL + url
       payload = JSON.dump(payload) if !payload[:media].is_a?(File)
       load_json(RestClient.post(post_api_url, payload, params: params))
