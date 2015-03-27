@@ -3,17 +3,20 @@
 module QyWechatApi
   class Client
     attr_accessor :corp_id, :group_secret, :expired_at # Time.now + expires_in
-    attr_accessor :access_token, :redis_key, :storage
+    attr_accessor :access_token, :redis_key, :storage, :custom_access_token
 
-    def initialize(corp_id, group_secret, redis_key=nil)
+    def initialize(corp_id, group_secret, options={})
+      redis_key = options[:redis_key]
+      @custom_access_token = options[:custom_access_token]
       @corp_id      = corp_id
       @group_secret = group_secret
-      @redis_key    = security_redis_key((redis_key || "qy_" + group_secret))
+      @redis_key    = security_redis_key((redis_key || "qy_#{group_secret}"))
       @storage      = Storage.init_with(self)
     end
 
     # return token
     def get_access_token
+      return custom_access_token if custom_access_token.present?
       @storage.access_token
     end
 

@@ -51,6 +51,15 @@ group_client = QyWechatApi::Client.new(corpid, corpsecret)
 group_client.is_valid?
 ```
 
+如果需要使用通过第三方应用 **获取企业号access_token** API 获取的 access_token
+做如下处理：
+
+```ruby
+options = {access_token: "access_token"}
+# redis_key 也可定制
+group_client = QyWechatApi::Client.new(corpid, corpsecret, options)
+```
+
 ## 部门
 
 ```ruby
