@@ -7,7 +7,7 @@ module QyWechatApi
 
     def initialize(corp_id, group_secret, options={})
       redis_key = options[:redis_key]
-      @custom_access_token = options[:custom_access_token]
+      @custom_access_token = options[:access_token]
       @corp_id      = corp_id
       @group_secret = group_secret
       @redis_key    = security_redis_key((redis_key || "qy_#{group_secret}"))
@@ -22,6 +22,7 @@ module QyWechatApi
 
     # 检查appid和app_secret是否有效。
     def is_valid?
+      return true if custom_access_token.present?
       @storage.valid?
     end
 
