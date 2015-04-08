@@ -15,7 +15,7 @@ module QyWechatApi
 
       # https://qyapi.weixin.qq.com/cgi-bin/get_jsapi_ticket?access_token=ACCESS_TOKE
       def get_jsticket
-        cache_key = "jsticket-#{client.redis_key}"
+        cache_key = "jsticket-#{corp_id}"
         Rails.cache.fetch(cache_key, expires_in: 7100.seconds) do
           res = http_get(get_jsapi_ticket, {waive_base_url: true})
           ticket = res.result["ticket"]
