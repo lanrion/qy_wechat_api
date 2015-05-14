@@ -67,6 +67,10 @@ module QyWechatApi
       Api::AuthLogin.new(nil, corp_id)
     end
 
+    def async_task
+      Api::AsyncTask.new(get_access_token, corp_id)
+    end
+
     private
 
       def security_redis_key(key)

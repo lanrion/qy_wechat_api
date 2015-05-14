@@ -203,6 +203,21 @@ suite_api.auth_url(code, uri, state="suite")
   group_client.auth_login.get_login_info_by_secret(auth_code, provider_secret)
 ```
 
+## 异步任务接口
+
+```ruby
+  # 邀请成员关注
+  group_client.async_task.invite_user(callback, invite_info={})
+  # 增量更新成员
+  group_client.async_task.sync_user(callback, media_id)
+  # 全量覆盖成员
+  group_client.async_task.replace_user(callback, media_id)
+  # 全量覆盖部门
+  group_client.async_task.replace_party(callback, media_id)
+  # 获取异步任务结果
+  group_client.async_task.get_result(job_id)
+```
+
 ### 应用套件的回调通知处理
 
 Wiki: http://qydev.weixin.qq.com/wiki/index.php?title=%E7%AC%AC%E4%B8%89%E6%96%B9%E5%9B%9E%E8%B0%83%E5%8D%8F%E8%AE%AE
