@@ -8,6 +8,8 @@ https://rubygems.org/gems/qy_wechat_api
 
 **企业号对应多个管理组，请前往 `设置` => `权限管理` 任意创建一个管理组，在管理组最下角即可获取 CorpID Secret**
 
+>> 此gem目前仅支持在Rails框架下使用!
+
 **有问题请及时提issue**
 
 ```ruby
@@ -146,12 +148,6 @@ group_client.media.upload(image_jpg_file, "image")
 group_client.media.get_media_by_id(media_id)
 ```
 
-## 捐赠支持
-
-  如果你觉得我的gem对你有帮助，欢迎打赏支持，:smile:
-
-  ![](https://raw.githubusercontent.com/lanrion/my_config/master/imagex/donation_me.png)
-
 ## 第三方应用
 
 这里特别注意：保留 suite_access_token的cache是直接利用了 Rails.cache，请务必在Rails框架下使用此gem。
@@ -246,4 +242,8 @@ class QyServicesController < ApplicationController
 end
 ```
 
->>>>>>> 添加第三方应用套件API使用说明
+## 捐赠支持
+
+  如果你觉得我的gem对你有帮助，欢迎打赏支持，:smile:
+
+  ![](https://raw.githubusercontent.com/lanrion/my_config/master/imagex/donation_me.png)
