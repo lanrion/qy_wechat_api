@@ -183,6 +183,26 @@ suite_api.get_corp_token(auth_corpid, permanent_code)
 suite_api.auth_url(code, uri, state="suite")
 ```
 
+## 企业号登录授权
+
+```ruby
+  # 获取登录授权URL
+  # state default 'qy_wechat', option
+  # 此处授权回调时会传递auth_code、expires_in，auth_code用于get_login_info(获取企业号管理员登录信息)接口使用
+  group_client.auth_login.auth_login_url("redirect_uri", "state")
+
+  # 获取应用提供商凭证
+  # provider_secret:提供商的secret，在提供商管理页面可见
+  # 此处会返回：provider_access_token（已通过Rails.cache缓存7100s）
+  group_client.auth_login.get_provider_token(provider_secret)
+
+  # 通过传递provider_access_token,获取企业号管理员登录信息
+  group_client.auth_login.get_login_info(auth_code, provider_access_token)
+
+  # 通过传递provider_secret,获取企业号管理员登录信息
+  group_client.auth_login.get_login_info_by_secret(auth_code, provider_secret)
+```
+
 ### 应用套件的回调通知处理
 
 Wiki: http://qydev.weixin.qq.com/wiki/index.php?title=%E7%AC%AC%E4%B8%89%E6%96%B9%E5%9B%9E%E8%B0%83%E5%8D%8F%E8%AE%AE
