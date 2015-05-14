@@ -1,5 +1,5 @@
-# 登录授权流程说明
 # encoding: utf-8
+# 登录授权流程说明
 module QyWechatApi
   module Api
     class AuthLogin < Base

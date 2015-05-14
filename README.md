@@ -214,6 +214,27 @@ suite_api.auth_url(code, uri, state="suite")
   group_client.async_task.get_result(job_id)
 ```
 
+## 管理企业号应用
+
+```ruby
+ # 获取应用概况列表
+ group_client.agent.list
+
+ # 设置企业号应用
+ # agentid  企业应用的id
+ # report_location_flag 企业应用是否打开地理位置上报 0：不上报；1：进入会话上报；2：持续上报
+ # logo_mediaid 企业应用头像的mediaid，通过多媒体接口上传图片获得mediaid，上传后会自动裁剪成方形和圆形两个头像
+ # name 企业应用名称
+ # description  企业应用详情
+ # redirect_domain  企业应用可信域名
+ # isreportuser 是否接收用户变更通知。0：不接收；1：接收
+ # isreportenter  是否上报用户进入应用事件。0：不接收；1：接收
+ group_client.agent.set()
+
+ ## 获取企业号应用
+ group_client.agent.get(agent_id)
+```
+
 ### 应用套件的回调通知处理
 
 Wiki: http://qydev.weixin.qq.com/wiki/index.php?title=%E7%AC%AC%E4%B8%89%E6%96%B9%E5%9B%9E%E8%B0%83%E5%8D%8F%E8%AE%AE

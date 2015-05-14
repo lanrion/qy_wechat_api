@@ -1,3 +1,4 @@
+# encoding: utf-8
 module QyWechatApi
   module Api
     class AsyncTask < Base
@@ -26,7 +27,7 @@ module QyWechatApi
 
       # 获取异步任务结果
       def get_result(job_id)
-        payload = {job_id: job_id}
+        payload = {jobid: job_id}
         http_post("getresult", payload)
       end
 

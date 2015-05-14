@@ -71,6 +71,10 @@ module QyWechatApi
       Api::AsyncTask.new(get_access_token, corp_id)
     end
 
+    def agent
+      Api::Agent.new(get_access_token)
+    end
+
     private
 
       def security_redis_key(key)
