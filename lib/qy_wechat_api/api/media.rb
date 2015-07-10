@@ -13,7 +13,7 @@ module QyWechatApi
 
       # 返回一个URL，请开发者自行使用此url下载
       def get_media_by_id(media_id)
-        http_get("get", {media_id: media_id})
+        "#{ENDPOINT_URL}#{base_url}/get?access_token=#{access_token}&media_id=#{media_id}"
       end
 
       private
