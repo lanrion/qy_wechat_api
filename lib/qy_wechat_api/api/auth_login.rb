@@ -51,7 +51,7 @@ module QyWechatApi
         def base_url(api, params={})
           params = params.to_query
           params = "?#{params}" if params.present?
-          "#{QyWechatApi::ENDPOINT_URL}/service/#{api}#{params}"
+          "/service/#{api}#{params}"
         end
 
     end
