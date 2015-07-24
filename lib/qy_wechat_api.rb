@@ -27,6 +27,7 @@ module QyWechatApi
   class << self
 
     def http_get_without_token(url, params={})
+      Rails.logger.info("url: #{url}--- params: #{params}")
       get_api_url = ENDPOINT_URL + url
       load_json(RestClient.get(get_api_url, params: params))
     end
