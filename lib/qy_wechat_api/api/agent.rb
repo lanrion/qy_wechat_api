@@ -16,12 +16,12 @@ module QyWechatApi
         http_get("list")
       end
 
+      private
+
+        def base_url
+          "/agent"
+        end
+
     end
-
-    private
-
-      def base_url
-        "/agent"
-      end
   end
 end
