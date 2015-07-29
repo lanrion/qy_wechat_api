@@ -19,10 +19,10 @@ module QyWechatApi
   autoload(:ObjectStorage, "qy_wechat_api/storage/object_storage")
   autoload(:RedisStorage,  "qy_wechat_api/storage/redis_storage")
 
-  ENDPOINT_URL = "https://qyapi.weixin.qq.com/cgi-bin".freeze
+  ENDPOINT_URL   = "https://qyapi.weixin.qq.com/cgi-bin".freeze
   SUITE_ENDPOINT = "https://qy.weixin.qq.com/cgi-bin".freeze
-  OK_MSG     = "ok".freeze
-  OK_CODE    = 0.freeze
+  OK_MSG  = "ok".freeze
+  OK_CODE = 0.freeze
 
   class << self
 

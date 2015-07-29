@@ -146,6 +146,35 @@ group_client.media.upload(image_jpg_file, "image")
 # 获取下载链接
 # 返回一个URL，请开发者自行使用此url下载
 group_client.media.get_media_by_id(media_id)
+
+# 上传永久图文素材
+# articles 为图文列表：
+{
+ "title": "Title01",
+ "thumb_media_id": "2-G6nrLmr5EC3MMb_-zK1dDdzmd0p7cNliYu9V5w7o8K0",
+ "author": "zs",
+ "content_source_url": "",
+ "content": "Content001",
+ "digest": "airticle01",
+ "show_cover_pic": "0"
+}
+group_client.material.add_mpnews(agent_id, articles)
+# 更新图文素材
+group_client.material.update_mpnews(agent_id, media_id, articles=[])
+
+# 上传其他类型永久素材
+# type: "image", "voice", "video", "file"
+# file: File
+group_client.material.add_material(agent_id, type, file)
+
+# 删除永久素材
+group_client.material.del(agent_id, media_id)
+
+# 获取素材总数
+group_client.material.get_count(agent_id)
+
+# 获取素材列表
+group_client.material.list(agent_id, type, offset, count=20)
 ```
 
 ## 第三方应用
