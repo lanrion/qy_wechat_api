@@ -15,6 +15,6 @@ module QyWechatApi
   end
 
   class Config
-    attr_accessor :redis
+    attr_accessor :redis, :cache_store, :logger
   end
 end

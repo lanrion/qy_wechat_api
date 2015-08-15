@@ -67,9 +67,5 @@ module QyWechatApi
           raise Errors::ValidAccessTokenException, result_handler.full_error_message
         end
       end
-
-      def weixin_redis
-        QyWechatApi.weixin_redis
-      end
   end
 end

@@ -39,7 +39,7 @@ module QyWechatApi
       # result.result[:ok] #=> true
       # result.result['ok'] #=> true
       def package_result(result)
-        if defined?(Rails)
+        if QyWechatApi.on_rails?
           ActiveSupport::HashWithIndifferentAccess.new(result)
         else
           result

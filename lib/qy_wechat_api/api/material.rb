@@ -4,7 +4,7 @@ module QyWechatApi
   module Api
     class Material < Base
 
-      MATERIAL_TYPES = ["image", "voice", "video", "file"]
+      MATERIAL_TYPES = ["image", "voice", "video", "file"].freeze
 
       # 上传永久图文素材
       # https://qyapi.weixin.qq.com/cgi-bin/material/add_mpnews?access_token=ACCESS_TOKEN

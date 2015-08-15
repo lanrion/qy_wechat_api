@@ -27,13 +27,13 @@ module QyWechatApi
   class << self
 
     def http_get_without_token(url, params={})
-      Rails.logger.info("url: #{url}--- params: #{params}")
+      logger.info("url: #{url}--- params: #{params}")
       get_api_url = ENDPOINT_URL + url
       load_json(RestClient.get(get_api_url, params: params))
     end
 
     def http_post_without_token(url, payload={}, params={})
-      Rails.logger.info("url: #{url}-- payload: #{payload}-- params: #{params}")
+      logger.info("url: #{url}-- payload: #{payload}-- params: #{params}")
       post_api_url = ENDPOINT_URL + url
       payload = JSON.dump(payload) if !payload[:media].is_a?(File)
       load_json(RestClient.post(post_api_url, payload, params: params))
@@ -51,5 +51,28 @@ module QyWechatApi
       "https://open.weixin.qq.com#{url}"
     end
 
+    def cache
+      if config.cache_store
+        config.cache_store
+      elsif on_rails?
+        Rails.cache
+      else
+        raise ConfigException, "You should appoint cache_store, e.g. Rails.cache or lookup ActiveSupport::Cache#lookup_store"
+      end
+    end
+
+    def logger
+      if config.logger
+        config.logger
+      elsif on_rails?
+        Rails.logger
+      else
+        raise ConfigException, "You should appoint one logger, e.g. Rails.logger or lookup ActiveSupport::Logger"
+      end
+    end
+
+    def on_rails?
+      defined?(Rails)
+    end
   end
 end

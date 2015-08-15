@@ -19,13 +19,13 @@ module QyWechatApi
       # https://qyapi.weixin.qq.com/cgi-bin/service/get_provider_token
       def get_provider_token(provider_secret)
         cache_key = "auth_login-#{corp_id}-get_provider_token"
-        Rails.cache.fetch(cache_key, expires_in: 7100.seconds) do
+        QyWechatApi.cache.fetch(cache_key, expires_in: 7100.seconds) do
           payload = {corpid: corp_id, provider_secret: provider_secret}
           url = base_url("get_provider_token")
           res = QyWechatApi.http_post_without_token(url, payload)
           token = res.result["provider_access_token"]
           if token.blank?
-            Rails.cache.delete(cache_key)
+            QyWechatApi.cache.delete(cache_key)
             raise res.errors
           else
             token

@@ -22,16 +22,16 @@ module QyWechatApi
               suite_id: suite_id,
               suite_secret: suite_secret
             }
-            Rails.cache.fetch(suite_id, expires_in: 7100.seconds) do
-              Rails.logger.info("Invoke #{suite_id} get_suite_token to refresh")
+            QyWechatApi.cache.fetch(suite_id, expires_in: 7100.seconds) do
+              QyWechatApi.logger.info("Invoke #{suite_id} get_suite_token to refresh")
               res = QyWechatApi.http_post_without_token(
                 request_url("get_suite_token", params),
                 params
               )
-              Rails.logger.info(res)
+              QyWechatApi.logger.info(res)
               token = res.result["suite_access_token"]
               if token.blank?
-                Rails.cache.delete(suite_id)
+                QyWechatApi.cache.delete(suite_id)
                 raise res.errors
               else
                 token
