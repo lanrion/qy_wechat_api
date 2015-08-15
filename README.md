@@ -74,22 +74,26 @@ group_client.department.list
 ## 成员
 
 ```ruby
-<!-- 创建成员 -->
+# 创建成员
 group_client.user.create(user_id, name, options={})
-<!-- 更新成员 -->
+# 更新成员
 group_client.user.update(user_id, options={})
-<!-- 删除成员 -->
+# 删除成员
 group_client.user.delete(user_id)
-<!-- 批量删除成员 -->
+# 批量删除成员
 group_client.user.batch_delete(user_ids)
-<!-- 获取成员 -->
+# 获取成员
 group_client.user.get(user_id)
-<!-- 获取部门成员 -->
+# 获取部门成员
 group_client.user.simple_list(department_id, fetch_child=nil, status=nil)
-<!-- 获取部门成员(详情) -->
+# 获取部门成员(详情)
 group_client.user.full_list(department_id, fetch_child=nil, status=nil)
-<!-- 邀请成员关注 -->
+# 邀请成员关注
 group_client.user.send_invitation(user_id, tips=nil)
+# userid转换成openid接口(企业支付需要使用到)
+group_client.covert_to_open_id(user_id, agent_id="")
+# openid转换成userid接口
+group_client.covert_to_user_id(open_id)
 ```
 
 ## 标签

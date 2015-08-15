@@ -69,6 +69,17 @@ module QyWechatApi
         http_post("/invite/send", payload, {waive_base_url: true})
       end
 
+      # userid转换成openid接口
+      def covert_to_open_id(user_id, agent_id="")
+        payload = {userid: user_id, agentid: agent_id}
+        http_post("convert_to_openid", payload)
+      end
+
+      # openid转换成userid接口
+      def covert_to_user_id(open_id)
+        http_post("convert_to_userid", {openid: open_id})
+      end
+
       private
 
         def base_url
