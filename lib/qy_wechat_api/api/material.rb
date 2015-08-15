@@ -4,7 +4,6 @@ module QyWechatApi
   module Api
     class Material < Base
 
-      material_types
       MATERIAL_TYPES = ["image", "voice", "video", "file"]
 
       # 上传永久图文素材

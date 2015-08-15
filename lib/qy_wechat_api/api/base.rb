@@ -11,6 +11,7 @@ module QyWechatApi
       end
 
       private
+
         def http_get(url, params={})
           params = params.merge({access_token: access_token})
           QyWechatApi.http_get_without_token(request_url(url, params), params )

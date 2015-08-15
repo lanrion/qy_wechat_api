@@ -292,6 +292,19 @@ class QyServicesController < ApplicationController
 end
 ```
 
+### 企业号消息接口
+
+Wiki: http://qydev.weixin.qq.com/wiki/index.php?title=%E4%BC%81%E4%B8%9A%E5%8F%B7%E6%B6%88%E6%81%AF%E6%8E%A5%E5%8F%A3%E8%AF%B4%E6%98%8E
+
+```ruby
+group_client.chat.send_single_text(sender, user_id, msg)
+group_client.chat.send_single_image(sender, user_id, media_id)
+group_client.chat.send_single_file(sender, user_id, media_id)
+group_client.chat.send_group_text(sender, chat_id, msg)
+group_client.chat.send_group_image(sender, chat_id, media_id)
+group_client.chat.send_group_file(sender, chat_id, media_id)
+```
+
 ## 捐赠支持
 
   如果你觉得我的gem对你有帮助，欢迎打赏支持，:smile:

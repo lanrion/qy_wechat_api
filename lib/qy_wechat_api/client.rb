@@ -6,12 +6,12 @@ module QyWechatApi
     attr_accessor :access_token, :redis_key, :storage, :custom_access_token
 
     def initialize(corp_id, group_secret, options={})
-      redis_key = options[:redis_key]
       @custom_access_token = options[:access_token]
-      @corp_id      = corp_id
+      redis_key = options[:redis_key]
       @group_secret = group_secret
-      @redis_key    = security_redis_key((redis_key || "qy_#{group_secret}"))
-      @storage      = Storage.init_with(self)
+      @corp_id   = corp_id
+      @redis_key = security_redis_key((redis_key || "qy_#{group_secret}"))
+      @storage   = Storage.init_with(self)
     end
 
     # return token
@@ -73,6 +73,10 @@ module QyWechatApi
 
     def agent
       Api::Agent.new(get_access_token)
+    end
+
+    def chat
+      Api::Chat.new(get_access_token)
     end
 
     private

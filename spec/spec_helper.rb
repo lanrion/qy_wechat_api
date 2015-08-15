@@ -40,6 +40,28 @@ end
 
 $client = QyWechatApi::Client.new(corpid, corpsecret)
 
+module Rails
+  class Logger
+    def info(msg)
+      puts msg
+    end
+  end
+
+  def self.logger
+    Logger.new
+  end
+
+  class Cache
+    def fetch(key, options={}, &block)
+      yield block
+    end
+  end
+
+  def self.cache
+    Cache.new
+  end
+end
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
