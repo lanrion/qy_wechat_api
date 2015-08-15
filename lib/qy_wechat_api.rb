@@ -57,7 +57,7 @@ module QyWechatApi
       elsif on_rails?
         Rails.cache
       else
-        raise ConfigException, "You should appoint cache_store, e.g. Rails.cache or lookup ActiveSupport::Cache#lookup_store"
+        raise Errors::ConfigException, "You should appoint cache_store, e.g. Rails.cache or lookup ActiveSupport::Cache#lookup_store"
       end
     end
 
@@ -67,7 +67,7 @@ module QyWechatApi
       elsif on_rails?
         Rails.logger
       else
-        raise ConfigException, "You should appoint one logger, e.g. Rails.logger or lookup ActiveSupport::Logger"
+        raise Errors::ConfigException, "You should appoint one logger, e.g. Rails.logger or lookup ActiveSupport::Logger"
       end
     end
 
