@@ -52,7 +52,7 @@ module QyWechatApi
     end
 
     def cache
-      if config.cache_store
+      if config.try(:cache_store)
         config.cache_store
       elsif on_rails?
         Rails.cache
@@ -62,7 +62,7 @@ module QyWechatApi
     end
 
     def logger
-      if config.logger
+      if config.try(:logger)
         config.logger
       elsif on_rails?
         Rails.logger
