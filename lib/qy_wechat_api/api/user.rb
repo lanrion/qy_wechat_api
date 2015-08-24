@@ -31,7 +31,7 @@ module QyWechatApi
 
       # 删除成员
       def delete(id)
-        http_get("get", {userid: id})
+        http_get("delete", {userid: id})
       end
 
       # 批量删除成员
