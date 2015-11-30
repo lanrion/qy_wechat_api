@@ -340,6 +340,25 @@ group_client.chat.send_group_image(sender, chat_id, media_id)
 group_client.chat.send_group_file(sender, chat_id, media_id)
 ```
 
+### 企业客服服务
+
+Wiki: http://qydev.weixin.qq.com/wiki/index.php?title=企业客服接口说明
+
+```ruby
+# msg_struct请根据文档结构拼接传入
+group_client.kf.send(msg_struct)
+```
+
+### 企业号摇一摇周边
+
+Wiki: http://qydev.weixin.qq.com/wiki/index.php?title=获取设备及用户信息
+
+```ruby
+# 获取设备及用户信息
+# 摇周边业务的ticket，可在摇到的URL中得到，ticket生效时间为30分钟，每一次摇都会重新生成新的ticket
+group_client.get_shake_info(ticket)
+```
+
 ## 捐赠支持
 
   如果你觉得我的gem对你有帮助，欢迎打赏支持，:smile:

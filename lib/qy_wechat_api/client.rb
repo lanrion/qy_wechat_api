@@ -79,6 +79,14 @@ module QyWechatApi
       Api::Chat.new(get_access_token)
     end
 
+    def kf
+      Api::Kf.new(get_access_token)
+    end
+
+    def shake_around
+      Api::ShakeAround.new(get_access_token)
+    end
+
     private
 
       def security_redis_key(key)
