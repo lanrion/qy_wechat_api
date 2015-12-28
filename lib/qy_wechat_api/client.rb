@@ -1,7 +1,9 @@
 # encoding: utf-8
-
+require "monitor"
 module QyWechatApi
   class Client
+    include MonitorMixin
+
     attr_accessor :corp_id, :group_secret, :expired_at # Time.now + expires_in
     attr_accessor :access_token, :redis_key, :storage, :custom_access_token
 
@@ -12,12 +14,13 @@ module QyWechatApi
       @corp_id   = corp_id
       @redis_key = security_redis_key((redis_key || "qy_#{group_secret}"))
       @storage   = Storage.init_with(self)
+      super() # Monitor#initialize
     end
 
     # return token
     def get_access_token
       return custom_access_token if custom_access_token.present?
-      @storage.access_token
+      synchronize{ @storage.access_token }
     end
 
     # 检查appid和app_secret是否有效。

@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'https://ruby.taobao.org'
 
 group :test, :development do
   gem 'rspec', '~> 3.1.0'
