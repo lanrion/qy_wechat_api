@@ -71,7 +71,8 @@ module QyWechatApi
 
       # userid转换成openid接口
       def covert_to_open_id(user_id, agent_id="")
-        payload = {userid: user_id, agentid: agent_id}
+        payload = {userid: user_id}
+        payload.merge!(agentid: agent_id) if agent_id.present?
         http_post("convert_to_openid", payload)
       end
 
