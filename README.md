@@ -236,6 +236,9 @@ suite_api.get_corp_token(auth_corpid, permanent_code)
 
 # 生成授权URL
 suite_api.auth_url(code, uri, state="suite")
+
+# 获取登录企业号官网的url
+suite_api.get_login_url(ticket, provider_token, target, agentid=nil)
 ```
 
 ## 企业号登录授权
