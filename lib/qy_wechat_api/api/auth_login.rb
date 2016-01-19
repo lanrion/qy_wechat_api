@@ -46,6 +46,18 @@ module QyWechatApi
         get_login_info(auth_code, token)
       end
 
+      # 获取登录企业号官网的url
+      # target可以是：agent_setting、send_msg、contact、3rd_admin
+      def get_login_url(ticket, provider_token, target, agentid=nil)
+        url = base_url("get_login_url", {provider_access_token: provider_token})
+        params = {
+          login_ticket: ticket,
+          target: target
+        }
+        params.merge!(agentid: agentid) if agentid.present?
+        QyWechatApi.http_post_without_token(url, params)
+      end
+
       private
 
         def base_url(api, params={})
