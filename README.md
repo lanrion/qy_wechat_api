@@ -81,7 +81,7 @@ group_client = QyWechatApi::Client.new(corpid, corpsecret, options)
 ## 部门
 
 ```ruby
-group_client.department.create(name, parent_id, order=nil)
+group_client.department.create(name, parent_id, order=nil, id=nil)
 group_client.department.update(id, name, parent_id, order=nil)
 group_client.department.delete(id)
 group_client.department.list

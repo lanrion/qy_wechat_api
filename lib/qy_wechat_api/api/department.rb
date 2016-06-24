@@ -7,10 +7,12 @@ module QyWechatApi
       # name  是 部门名称。长度限制为1~64个字符
       # parentid  是 父亲部门id。根部门id为1
       # order 否 在父部门中的次序。从1开始，数字越大排序越靠后
-      def create(name, parent_id, order=nil)
+      # id  否  部门id，整型。指定时必须大于1，不指定时则自动生成
+      def create(name, parent_id, order=nil, id=nil)
         payload = {name: name}
         payload[:parentid] = parent_id
         payload[:order] = order if not order.nil?
+        payload[:id] = id if id.is_a?( Integer ) && id > 1
         http_post("create", payload)
       end
 
