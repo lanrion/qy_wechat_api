@@ -32,8 +32,12 @@ module QyWechatApi
         http_get("delete", id: id)
       end
 
-      def list
-        http_get("list")
+      def list(id = nil)
+        if id
+          http_get("list", id: id)
+        else
+          http_get("list")
+        end
       end
 
       private
